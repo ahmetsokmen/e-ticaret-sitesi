@@ -1,0 +1,63 @@
+﻿@model List<OrnekSite.Entity.Product>
+@{
+    ViewBag.Title = "GetItemsFromCategory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div id="sidebar" class="span3">
+        <div class="well well-small">
+            <ul class="nav nav-list">
+                @Html.Action("CategoryList")
+                <li style="border:0"> &nbsp;</li>
+                @Html.Action("Summary", "Cart")
+            </ul>
+        </div>
+
+        <div class="well well-small alert alert-warning cntr">
+            <h2>50% Discount</h2>
+            <p>
+                only valid for online order. <br><br><a class="defaultBtn" href="#">Click here </a>
+            </p>
+        </div>
+        <div class="well well-small"><a href="#"><img src="~/Content/Site/assets/img/paypal.jpg" alt="payment method paypal"></a></div>
+
+        <a class="shopBtn btn-block" href="#">Öne Çıkan Ürünler<br><small>Click to view</small></a>
+        <br>
+        <br>
+        @Html.Action("FeaturedProduct")
+    </div>
+    <div class="span9">
+        <!--
+        New Products
+        -->
+        <div class="well well-small">
+            <h3>Ürünler </h3>
+            <div class="row-fluid">
+                <ul class="thumbnails">
+                    @foreach (var item in Model)
+                    {
+                        <li class="span4">
+                            <div class="thumbnail">
+
+                                <a href="/Home/ProductDetails/@item.Id"><img style="width:240px; height:200px;" src="@item.Image" alt=""></a>
+                                <div class="caption cntr">
+                                    <p>@item.Name</p>
+                                    <p><strong> @item.Price ₺</strong></p>
+                                    <h4><a class="shopBtn" href="/Home/ProductDetails/@item.Id" title="add to cart">Görüntüle </a></h4>
+                                    <div class="actionList">
+                                        
+                                    </div>
+                                    <br class="clr">
+                                </div>
+                            </div>
+                        </li>
+                    }
+
+                </ul>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+

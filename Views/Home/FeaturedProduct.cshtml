@@ -1,0 +1,17 @@
+﻿@model List<OrnekSite.Entity.Product>
+<ul class="nav nav-list promowrapper">
+    @foreach (var item in Model)
+    {
+        <li>
+            <div class="thumbnail">
+                <a class="zoomTool" href="/Home/ProductDetails/@item.Id" title="add to cart" style="display: none;"><span class="icon-search"></span> Ürüne Git</a>
+                <img src="@item.Image" alt="bootstrap ecommerce templates">
+                <div class="caption">
+                    <h4><a class="defaultBtn" href="/Home/ProductDetails/@item.Id">@item.Name</a> <span class="pull-right">@item.Price ₺</span></h4>
+                </div>
+            </div>
+        </li>
+        <li style="border:0"> &nbsp;</li>
+
+    }
+</ul>

@@ -1,0 +1,34 @@
+﻿@model List<OrnekSite.Entity.Product>
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="well well-small">
+    <h3>New Products </h3>
+    <hr class="soften">
+
+    <div class="row-fluid">
+        <ul class="thumbnails">
+            @foreach (var item in Model)
+            {
+                <li class="span4">
+                    <div class="thumbnail">
+
+
+                        <a href="/Home/ProductDetails/@item.Id"><img style="width:240px; height:200px;" src="@item.Image" alt=""></a>
+                        <div class="caption cntr">
+                            <p>@item.Name</p>
+                            <p><strong>@item.Price ₺ </strong></p>
+                            <h4><a class="shopBtn" href="/Home/ProductDetails/@item.Id" title="add to cart"> Görüntüle </a></h4>
+
+                            <br class="clr">
+                        </div>
+                    </div>
+                </li>
+            }
+
+        </ul>
+    </div>
+</div>
+

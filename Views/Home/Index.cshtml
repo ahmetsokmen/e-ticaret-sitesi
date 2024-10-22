@@ -1,0 +1,100 @@
+﻿@model List<OrnekSite.Entity.Product>
+
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div id="sidebar" class="span3">
+        <div class="well well-small">
+            <ul class="nav nav-list">
+                @Html.Action("CategoryList")
+                <li style="border:0"> &nbsp;</li>
+               @Html.Action("Summary","Cart")
+            </ul>
+        </div>
+
+        <div class="well well-small alert alert-warning cntr">
+            <h2>50% Discount</h2>
+            <p>
+                only valid for online order. <br><br><a class="defaultBtn" href="#">Click here </a>
+            </p>
+        </div>
+        <div class="well well-small"><a href="#"><img src="~/Content/Site/assets/img/paypal.jpg" alt="payment method paypal"></a></div>
+
+        <a class="shopBtn btn-block" href="#">Öne Çıkan Ürünler<br><small>Click to view</small></a>
+        <br>
+        <br>
+        @Html.Action("FeaturedProduct")
+
+    </div>
+    <div class="span9">
+        <div class="well np">
+            <div id="myCarousel" class="carousel slide homCar">
+                <div class="carousel-inner">
+
+                    <div class="item active">
+                        <img style="width:700px; height:300px" src="~/Content/Site/assets/img/carousel1.png" alt="bootstrap ecommerce templates">
+                        <div class="carousel-caption">
+                            <h4>Bootstrap Ecommerce template</h4>
+                            <p><span>Highly Google seo friendly</span></p>
+                        </div>
+                    </div>
+                    @foreach (var item in Model)
+                    {
+                        if (item.Slider == true)
+                        {
+                            <div class="item ">
+                                <img style="width:700px; height:300px" src="@item.Image" alt="bootstrap ecommerce templates">
+                                <div class="carousel-caption">
+                                    <h4>@item.Name</h4>
+                                    <p><span>@item.Price</span></p>
+                                </div>
+                            </div>
+                        }
+                    }
+
+                </div>
+                <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+                <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+            </div>
+        </div>
+        <!--
+        New Products
+        -->
+        <div class="well well-small">
+            <h3>New Products </h3>
+            <hr class="soften">
+          
+            <div class="row-fluid">
+                <ul class="thumbnails">
+                    @foreach (var item in Model)
+                    {
+                        <li class="span4">
+                            <div class="thumbnail">
+
+                                
+                                <a href="/Home/ProductDetails/@item.Id"><img style="width:240px; height:200px;" src="@item.Image" alt=""></a>
+                                <div class="caption cntr">
+                                    <p>@item.Name</p>
+                                    <p><strong>@item.Price ₺ </strong></p>
+                                    <h4><a class="shopBtn" href="/Home/ProductDetails/@item.Id" title="add to cart"> Görüntüle </a></h4>
+                                   
+                                    <br class="clr">
+                                </div>
+                            </div>
+                        </li>
+                    }
+
+                </ul>
+            </div>
+        </div>
+        <!--
+        Featured Products
+        -->
+     
+
+       
+    </div>
+</div>

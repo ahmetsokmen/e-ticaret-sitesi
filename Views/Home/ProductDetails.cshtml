@@ -1,0 +1,88 @@
+﻿@model OrnekSite.Entity.Product
+@{
+    ViewBag.Title = "ProductDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div id="sidebar" class="span3">
+        <div class="well well-small">
+            <ul class="nav nav-list">
+                @Html.Action("CategoryList")
+                <li style="border:0"> &nbsp;</li>
+                @Html.Action("Summary", "Cart")
+            </ul>
+        </div>
+
+        <div class="well well-small alert alert-warning cntr">
+            <h2>50% Discount</h2>
+            <p>
+                only valid for online order. <br><br><a class="defaultBtn" href="#">Click here </a>
+            </p>
+        </div>
+        <div class="well well-small"><a href="#"><img src="~/Content/Site/assets/img/paypal.jpg" alt="payment method paypal"></a></div>
+
+        <a class="shopBtn btn-block" href="#">Öne Çıkan Ürünler<br><small>Click to view</small></a>
+        <br>
+        <br>
+        @Html.Action("FeaturedProduct")
+
+    </div>
+    <div class="span9">
+        <ul class="breadcrumb">
+            <li><a href="/Home/Index">Anasayfa</a> <span class="divider">/</span></li>
+            <li><a href="/Home/Product">Ürünler</a> <span class="divider">/</span></li>
+            <li class="active">Ürün Detayı</li>
+        </ul>
+        <div class="well well-small">
+            <div class="row-fluid">
+                <div class="span5">
+                    <div id="myCarousel" class="carousel slide cntr">
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <a href="#"> <img src="@Model.Image" alt="" style="width:100%"></a>
+                            </div>
+                            @*<div class="item">
+                                <a href="#"> <img src="~/Content/Site/assets/img/b.jpg" alt="" style="width:100%"></a>
+                            </div>
+                            <div class="item">
+                                <a href="#"> <img src="~/Content/Site/assets/img/e.jpg" alt="" style="width:100%"></a>
+                            </div>*@
+                        </div>
+                        <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+                        <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+                    </div>
+                </div>
+                <div class="span7">
+                    <h3>@Model.Name </h3>
+                    <hr class="soft">
+                    @using (Html.BeginForm("AddToCart", "Cart", FormMethod.Post, new { @class = "form-horizontal qtyFrm" }))
+                    {
+                        @Html.HiddenFor(i=>i.Id);// parantez içine model.id ile aynı işlemi yapar.
+
+                        <div class="control-group">
+                            <label class="control-label"><span>@Model.Price ₺</span></label>
+
+                        </div>
+
+
+                        <h4>@Model.Stok adet stok</h4>
+                        <p>
+                            @Model.Description
+                        </p><p>
+                            <button type="submit" class="shopBtn"><span class=" icon-shopping-cart"></span> Sepete Ekle</button>
+                        </p>
+
+                    }
+
+                </div>
+            </div>
+            <hr class="softn clr">
+
+
+   
+
+        </div>
+    </div>
+</div>
+

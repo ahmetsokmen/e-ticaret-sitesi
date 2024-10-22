@@ -1,0 +1,29 @@
+﻿
+<ul class="nav pull-right">
+
+    @if (Request.IsAuthenticated)//kullanıcı giriş yapmış mı ?
+    {
+        if (this.User.IsInRole("admin"))//giriş yapan kullanıcı adminse
+        {
+            <li><a target="_blank" href="/AdminPanel/Admin/Index"><span class="icon-user"></span> Admin Paneli</a></li>
+            <li><a href="/Account/UserProfil"><span class="icon-edit"></span> Profilim</a></li>
+            <li><a href="/Account/Index"> @User.Identity.Name</a></li>
+            <li class="label-warning"><a href="/Account/Logout" style="color:white"><span class="icon-remove"></span> Çıkış</a></li>
+
+        }
+        else//giriş yapan kişi admin değilse
+        {
+            <li><a href="/Account/UserProfil"><span class="icon-edit"></span> Profilim</a></li>
+            <li><a href="/Account/Index"> @User.Identity.Name</a></li>
+            <li class="label-warning"><a href="/Account/Logout" style="color:white"><span class="icon-remove"></span> Çıkış</a></li>
+        }
+    }
+    else
+    {
+        <li class="label-warning"><a href="/Account/Register" style="color:white"><span class="icon-edit"></span> Kayıt Ol</a></li>
+        <li class="label-success"><a href="/Account/Login" style="color:white"><span class="icon-user"></span> Giriş Yap</a></li>
+
+
+    }
+
+</ul>
